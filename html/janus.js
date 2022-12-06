@@ -2551,7 +2551,7 @@ function Janus(gatewayCallbacks) {
 								streamsDone(handleId, jsep, media, callbacks, stream);
 							}).catch(function(error) {
 								pluginHandle.consentDialog(false);
-								callbacks.error({code: error.code, name: error.name, message: error.message});
+								callbacks.error({code: error.code, name: error.name, message: error.message, error});
 							});
 					}
 				})
