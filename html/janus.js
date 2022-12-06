@@ -2370,7 +2370,7 @@ function Janus(gatewayCallbacks) {
 						navigator.mediaDevices.getDisplayMedia(constraints)
 							.then(function(stream) {
 								pluginHandle.consentDialog(false);
-								if(isAudioSendEnabled(media) && !media.keepAudio) {
+								if(isAudioSendEnabled(media) && !media.keepAudio && !media.preventGetUserMedia) {
 									navigator.mediaDevices.getUserMedia({ audio: true, video: false })
 									.then(function (audioStream) {
 										stream.addTrack(audioStream.getAudioTracks()[0]);
@@ -2551,7 +2551,7 @@ function Janus(gatewayCallbacks) {
 								streamsDone(handleId, jsep, media, callbacks, stream);
 							}).catch(function(error) {
 								pluginHandle.consentDialog(false);
-								callbacks.error({code: error.code, name: error.name, message: error.message});
+								callbacks.error({code: error.code, name: error.name, message: error.message, error});
 							});
 					}
 				})
